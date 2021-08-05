@@ -1,0 +1,12 @@
+
+# https://www.codeblocq.com/2016/01/Untrack-files-already-added-to-git-repository-based-on-gitignore/
+
+.DS_Store
+venv/
+.idea/
+.git/
+*.log
+*.pyc
+__pycache__/
+.ipynb_checkpoints
+Notebooks/
