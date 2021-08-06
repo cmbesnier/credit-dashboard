@@ -65,6 +65,7 @@ name_dict = {'NAME_INCOME_TYPE': 'Income Type',
              'AMT_INCOME_TOTAL': 'Total Income',
              'AMT_CREDIT': 'Credit Amount',
              'AMT_ANNUITY': 'Annuity',
+             'AMT_GOODS_PRICE': 'Goods Price',
              'BUREAU_COUNT': 'Bureau Credit Nb Loans',
              'BUREAU_ACTIVE_LOANS_PCT': 'Bureau Credit  % Active Loans',
              'PREVAPP_SK_ID_PREV_COUNT': 'Nb Previous Application',
@@ -106,7 +107,7 @@ select_dict = dict()
 col5, col6, col7, col8 = st.beta_columns(4)
 cols = [col5, col6, col7, col8]
 keys = [0, 10, 20, 30, 40]
-for i, var in enumerate(['AMT_INCOME_TOTAL', 'AMT_CREDIT', 'AMT_ANNUITY']):
+for i, var in enumerate(['AMT_INCOME_TOTAL', 'AMT_GOODS_PRICE','AMT_CREDIT', 'AMT_ANNUITY']):
     with cols[i]:
         select_dict[var] = st.slider(name_dict[var],
                                 int(0),
@@ -128,7 +129,7 @@ for var in select_dict.keys():
 X['CREDIT_TERM'] = select_dict['AMT_CREDIT'] /(select_dict['AMT_ANNUITY']+ 0.00001)
 X['ANNUITY_INCOME_RATIO'] = select_dict['AMT_ANNUITY'] / (select_dict['AMT_INCOME_TOTAL']+ 0.00001)
 X['INCOME_ANNUITY_DIFF'] = select_dict['AMT_INCOME_TOTAL'] - select_dict['AMT_ANNUITY']
-X['CREDIT_GOODS_RATIO'] = select_dict['AMT_CREDIT'] / (X['AMT_GOODS_PRICE'] + 0.00001)
+X['CREDIT_GOODS_RATIO'] = select_dict['AMT_CREDIT'] / (select_dict['AMT_GOODS_PRICE'] + 0.00001)
 
 # Apply preprocessing
 X_pp = preprocessing_data(X)
@@ -171,7 +172,7 @@ param_name_dict = {
                       'Days Employed Ratio': 'DAYS_EMPLOYED_RATIO',
                       'Bureau Debt Credit Ratio': 'BUREAU_RATIO_DEBT_CREDIT',
                       'Age': 'DAYS_BIRTH',
-                      'Amount Goods Price': 'AMT_GOODS_PRICE',
+                      'Goods Price': 'AMT_GOODS_PRICE',
                         'Annuity Income Ratio':'ANNUITY_INCOME_RATIO',
 }
 
